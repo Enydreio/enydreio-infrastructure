@@ -17,7 +17,7 @@ RUN go build -o /go-server/app
 FROM alpine:latest
 WORKDIR /root/
 
-COPY --from=build-vue /app/dist /dist
+COPY --from=build-vue /app/dist ./dist
 
 COPY --from=build-go /go-server/app .
 
