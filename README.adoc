@@ -2,7 +2,7 @@
 
 == Enviroment Variables
 
-To connect to the database you have to set multiple enviroment variables, which are already predefined in the <mark>.env.example</mark> file. You just have to set your own POSTGRES_PASSWORD.
+To connect to the database you have to set multiple enviroment variables, which are already predefined in the `.env.example` file. You just have to set your own POSTGRES_PASSWORD.
 
 == Docker Compose
 
