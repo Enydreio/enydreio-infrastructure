@@ -22,5 +22,3 @@ COPY --from=build-vue /app/dist ./dist
 COPY --from=build-go /go-server/app .
 
 EXPOSE 8080
-
-COPY .env .env
