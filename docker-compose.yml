@@ -13,8 +13,10 @@ services:
       - ./app-data:/root/data
       - /var/run/docker.sock:/var/run/docker.sock
     command: sh -c "./app --docker"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
   db:
-    image: postgres:17rc1-alpine
+    image: postgres:17-alpine
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
