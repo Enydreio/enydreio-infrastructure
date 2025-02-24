@@ -141,24 +141,30 @@ spec:
       containers:
         - name: keycloak
           image: quay.io/keycloak/keycloak:26.0
+          args: [ "start-dev" ]
           env:
-            - name: KC_DB
-              value: postgres
-            - name: KC_DB_URL
-              value: "jdbc:postgresql://db:5432/$(POSTGRES_DB)"
-            - name: KC_DB_USERNAME
+            - name: KEYCLOAK_ADMIN
+              valueFrom:
+                configMapKeyRef:
+                  name: db-config
+                  key: KEYCLOAK_ADMIN
+            - name: KEYCLOAK_ADMIN_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: db-secret
-                  key: POSTGRES_USER
-            - name: KC_DB_PASSWORD
+                  key: KEYCLOAK_ADMIN_PASSWORD
+            - name: KC_HTTP_HOST
               valueFrom:
-                secretKeyRef:
-                  name: db-secret
-                  key: POSTGRES_PASSWORD
+                configMapKeyRef:
+                  name: db-config
+                  key: KC_HTTP_HOST
+            - name: KC_BIND_ADDRESS
+              valueFrom:
+                configMapKeyRef:
+                  name: db-config
+                  key: KC_BIND_ADDRESS
           ports:
             - containerPort: 8080
-          command: ["start"]
 ---
 apiVersion: v1
 kind: Service
@@ -169,5 +175,5 @@ spec:
     app: keycloak
   ports:
     - protocol: TCP
-      port: 8085
+      port: 8080
       targetPort: 8080
