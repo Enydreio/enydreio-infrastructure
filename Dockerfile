@@ -20,5 +20,6 @@ WORKDIR /root/
 COPY --from=build-vue /app/dist ./dist
 
 COPY --from=build-go /go-server/app .
+COPY init-options.json .
 
 EXPOSE 8080

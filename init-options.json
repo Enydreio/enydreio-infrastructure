@@ -1,0 +1,6 @@
+{
+  "url": "http://localhost:8085",
+  "realm": "test",
+  "clientId": "vue-app",
+  "onLoad": "login-required"
+}
