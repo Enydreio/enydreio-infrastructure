@@ -28,7 +28,7 @@ jobs:
 
       - name: Build, Tag, and Push Docker Image
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
         run: |
           chmod +x ./image-build-push.sh
           ./image-build-push.sh
