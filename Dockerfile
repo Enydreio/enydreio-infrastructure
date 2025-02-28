@@ -3,6 +3,4 @@ WORKDIR /root/
 
 RUN apk add --no-cache wget tar
 COPY init-options.json .
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
-ENTRYPOINT ["/entrypoint.sh"]
+CMD wget -O app https://github.com/Enydreio/enydreio-backend/releases/download/main/enydreio-backend && wget https://github.com/Enydreio/enydreio-frontend/releases/download/main/dist.tar.gz && mkdir dist && tar -xzf dist.tar.gz -C dist && rm dist.tar.gz && chmod +x app
