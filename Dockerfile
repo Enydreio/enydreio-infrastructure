@@ -4,5 +4,4 @@ WORKDIR /root/
 RUN apk add --no-cache wget tar
 COPY init-options.json .
 COPY entrypoint.sh .
-RUN chmod +x entrypoint.sh
-ENTRYPOINT ["./entrypoint.sh"]
+ENTRYPOINT ["sh ./entrypoint.sh"]
