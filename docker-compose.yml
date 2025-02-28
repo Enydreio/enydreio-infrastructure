@@ -10,7 +10,7 @@ services:
     volumes:
       - ./app-data:/root/data
       - /var/run/docker.sock:/var/run/docker.sock
-    command: app --docker --init-options init-options.json
+    command: ./app --docker --init-options init-options.json
     extra_hosts:
       - "host.docker.internal:host-gateway"
   db:
