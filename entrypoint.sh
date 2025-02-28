@@ -5,4 +5,4 @@ mkdir dist
 tar -xzf dist.tar.gz -C dist
 rm dist.tar.gz
 chmod +x app
-echo exec $@
+exec $@
