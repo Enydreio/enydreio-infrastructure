@@ -102,12 +102,15 @@ spec:
                 secretKeyRef:
                     name: db-secret
                     key: POSTGRES_PASSWORD
+            - name: DATABASE_DATA
+              value: "host=$(DB_HOST) user=$(DB_USER) password=$(DB_PASSWORD) dbname=$(DB_NAME) port=5432 sslmode=disable TimeZone=Europe/Vienna"
           ports:
             - containerPort: 8080
           volumeMounts:
             - mountPath: /root/data
               name: app-storage
-          command: ["sh", "-c", 'DATABASE_DATA="host=$DB_HOST user=$DB_USER password=$DB_PASSWORD dbname=$DB_NAME port=5432 sslmode=disable TimeZone=Europe/Vienna" ./app --kubernetes']
+          command: ['/entrypoint.sh']
+          args: ['./app --kubernetes']
       volumes:
         - name: app-storage
           emptyDir: {}
